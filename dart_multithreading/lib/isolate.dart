@@ -3,28 +3,28 @@ import 'dart:isolate';
 import 'package:flutter/foundation.dart';
 
 
-/// Run using fvm flutter test test/isolate_test.dart
-/// Used Future.delayed() only to keep the main() function alive long enough for the spawned/background isolate to finish and print its result.
+/// Run using 'fvm flutter test test/isolate_test.dart'
+/// Used Future.delayed() only to keep the main() function alive long enough for the spawned/background isolate to finish and debugPrint its result.
 
 Future<void> main() async {
   // ============================================================
   // 1. NORMAL FUNCTION
   // ============================================================
 
-  print('\n========== NORMAL FUNCTION ==========');
-  print('Before task triggered');
+  debugPrint('\n========== NORMAL FUNCTION ==========');
+  debugPrint('Before task triggered');
 
   processDataNormal(100000000);
 
-  print('After task triggered');
+  debugPrint('After task triggered');
 
 
   // ============================================================
   // 2. ISOLATE.SPAWN()
   // ============================================================
 
-  print('\n========== ISOLATE.SPAWN() ==========');
-  print('Before task triggered');
+  debugPrint('\n========== ISOLATE.SPAWN() ==========');
+  debugPrint('Before task triggered');
 
   final receivePort = ReceivePort();
 
@@ -37,11 +37,11 @@ Future<void> main() async {
   );
 
   receivePort.listen((message) {
-    print(message);
+    debugPrint(message);
     receivePort.close();
   });
 
-  print('After task triggered');
+  debugPrint('After task triggered');
 
   await Future.delayed(const Duration(seconds: 1));
 
@@ -49,17 +49,17 @@ Future<void> main() async {
   // 3. COMPUTE()
   // ============================================================
 
-  print('\n========== COMPUTE() ==========');
-  print('Before task triggered');
+  debugPrint('\n========== COMPUTE() ==========');
+  debugPrint('Before task triggered');
 
   compute(
     processDataWithCompute,
     100000000,
   ).then((message) {
-    print(message);
+    debugPrint(message);
   });
 
-  print('After task triggered');
+  debugPrint('After task triggered');
 
   await Future.delayed(const Duration(seconds: 1));
 }
@@ -74,7 +74,7 @@ void processDataNormal(int count) {
     // Heavy processing
   }
 
-  print('Data Processing Done - Normal');
+  debugPrint('Data Processing Done - Normal');
 }
 
 

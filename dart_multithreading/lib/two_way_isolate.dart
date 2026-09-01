@@ -2,6 +2,8 @@ import 'dart:isolate';
 
 import 'package:flutter/material.dart';
 
+/// Run using 'fvm flutter test test/two_way_isolate_test.dart'
+
 void main() async {
   debugPrint('Main Isolate: Starting...');
 

@@ -52,7 +52,7 @@ class Counter {
     }
 }
 
-public class Main {
+public class RaceCondition {
 
     public static void main(String[] args) throws InterruptedException {
 
@@ -116,7 +116,6 @@ public class Main {
  * Only one thread will be allowed to execute the synchronized
  * method at a time.
  */
-
 class SafeCounter {
 
     int count = 0;
@@ -126,8 +125,7 @@ class SafeCounter {
     }
 }
 
-@SuppressWarnings("unused")
-class SafeMain {
+class SafeRaceCondition {
 
     public static void main(String[] args) throws InterruptedException {
 

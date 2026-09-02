@@ -68,3 +68,27 @@ void workerTask(SendPort mainSendPort) {
     }
   });
 }
+
+/*
+    Main Isolate
+    │
+    │ Isolate.spawn()
+    ▼
+    Worker Isolate
+    │
+    │ SendPort পাঠায়
+    ▼
+    Main Isolate
+    │
+    │ "ProcessData:Item1" পাঠায়
+    ▼
+    Worker Isolate
+    │
+    │ Processing করে
+    ▼
+    Main Isolate
+    │
+    ├── "Processing Item1..."
+    ├── "Result of Item1: Success"
+    └── "Task Complete"
+*/
